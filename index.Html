@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noir Essence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0d0d0d;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    nav{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.5);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#d4af37;
+    }
+
+    nav ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#d4af37;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:120px 20px;
+      background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1600&auto=format&fit=crop') center/cover;
+    }
+
+    .hero-content{
+      max-width:800px;
+    }
+
+    .hero h1{
+      font-size:70px;
+      margin-bottom:20px;
+      color:#d4af37;
+    }
+
+    .hero p{
+      font-size:22px;
+      color:#ddd;
+      margin-bottom:35px;
+      line-height:1.6;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:15px 35px;
+      background:#d4af37;
+      color:black;
+      text-decoration:none;
+      border-radius:50px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+      background:white;
+    }
+
+    section{
+      padding:90px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      color:#d4af37;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#bbb;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 0 30px rgba(212,175,55,0.2);
+    }
+
+    .about-text h3{
+      font-size:35px;
+      margin-bottom:20px;
+    }
+
+    .about-text p{
+      line-height:1.8;
+      color:#ccc;
+    }
+
+    .categories{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:#161616;
+      padding:35px 25px;
+      border-radius:20px;
+      transition:0.4s;
+      text-align:center;
+      border:1px solid rgba(212,175,55,0.1);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 25px rgba(212,175,55,0.25);
+    }
+
+    .card h3{
+      color:#d4af37;
+      margin-bottom:15px;
+      font-size:26px;
+    }
+
+    .card p{
+      color:#bbb;
+      line-height:1.7;
+    }
+
+    .recommendation{
+      background:#111;
+      border-radius:25px;
+      text-align:center;
+      padding:60px 30px;
+    }
+
+    .recommendation h3{
+      font-size:35px;
+      margin-bottom:25px;
+      color:#d4af37;
+    }
+
+    select{
+      padding:14px 20px;
+      border-radius:10px;
+      border:none;
+      width:250px;
+      font-size:16px;
+      margin-bottom:20px;
+    }
+
+    button{
+      padding:14px 30px;
+      border:none;
+      border-radius:10px;
+      background:#d4af37;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:white;
+    }
+
+    #result{
+      margin-top:30px;
+      font-size:22px;
+      color:#fff;
+    }
+
+    footer{
+      background:black;
+      text-align:center;
+      padding:35px 20px;
+      color:#888;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:48px;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        gap:15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">Noir Essence</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#recommend">Recommend</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Find Your Signature Fragrance</h1>
+
+      <p>
+        Noir Essence helps you discover perfumes based on your mood,
+        personality, lifestyle, and vibe.
+      </p>
+
+      <a href="#recommend" class="btn">Explore Now</a>
+    </div>
+  </section>
+
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About Noir Essence</h2>
+      <p>Luxury fragrance discovery platform</p>
+    </div>
+
+    <div class="about">
+      <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop" alt="Perfume">
+
+      <div class="about-text">
+        <h3>Experience Fragrance Differently</h3>
+
+        <p>
+          Noir Essence is a modern perfume recommendation platform designed
+          for students, professionals, and fragrance lovers.
+          
+          Our mission is to help users discover perfumes that match their
+          mood, personality, and lifestyle in a unique and engaging way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="categories">
+
+    <div class="section-title">
+      <h2>Fragrance Categories</h2>
+      <p>Choose your vibe</p>
+    </div>
+
+    <div class="categories">
+
+      <div class="card">
+        <h3>Fresh</h3>
+        <p>Citrus and aquatic fragrances for everyday freshness and confidence.</p>
+      </div>
+
+      <div class="card">
+        <h3>Luxury</h3>
+        <p>Premium scents with elegant woody and oriental notes.</p>
+      </div>
+
+      <div class="card">
+        <h3>Romantic</h3>
+        <p>Soft floral and sweet fragrances for memorable moments.</p>
+      </div>
+
+      <div class="card">
+        <h3>Party</h3>
+        <p>Bold and long-lasting perfumes for nightlife and events.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="recommend">
+
+    <div class="recommendation">
+
+      <h3>Get Your Perfume Recommendation</h3>
+
+      <select id="mood">
+        <option value="">Select Your Mood</option>
+        <option value="fresh">Fresh</option>
+        <option value="luxury">Luxury</option>
+        <option value="romantic">Romantic</option>
+        <option value="party">Party</option>
+      </select>
+
+      <br>
+
+      <button onclick="recommendPerfume()">Recommend</button>
+
+      <div id="result"></div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Noir Essence | Designed for fragrance lovers</p>
+  </footer>
+
+  <script>
+
+    function recommendPerfume(){
+
+      const mood = document.getElementById('mood').value;
+      const result = document.getElementById('result');
+
+      if(mood === 'fresh'){
+        result.innerHTML = 'Recommended: Davidoff Cool Water';
+      }
+
+      else if(mood === 'luxury'){
+        result.innerHTML = 'Recommended: Tom Ford Oud Wood';
+      }
+
+      else if(mood === 'romantic'){
+        result.innerHTML = 'Recommended: Chanel Coco Mademoiselle';
+      }
+
+      else if(mood === 'party'){
+        result.innerHTML = 'Recommended: Dior Sauvage';
+      }
+
+      else{
+        result.innerHTML = 'Please select a mood';
+      }
+    }
+
+  </script>
+
+</body>
+</html>
