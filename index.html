@@ -1,926 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>ESSENCE AI</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    body{
-      font-family:'Poppins',sans-serif;
-      background:#050505;
-      color:white;
-      overflow-x:hidden;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    nav{
-
-      position:fixed;
-      top:0;
-      width:100%;
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-
-      padding:20px 8%;
-
-      background:rgba(0,0,0,0.55);
-
-      backdrop-filter:blur(12px);
-
-      z-index:1000;
-
-    }
-
-    .logo{
-      font-size:30px;
-      font-weight:700;
-      color:#d4af37;
-    }
-
-    nav ul{
-      display:flex;
-      gap:25px;
-      list-style:none;
-      flex-wrap:wrap;
-    }
-
-    nav ul li a{
-      text-decoration:none;
-      color:white;
-      transition:0.3s;
-      font-size:15px;
-    }
-
-    nav ul li a:hover{
-      color:#d4af37;
-    }
-
-    .hero{
-
-      min-height:100vh;
-
-      display:flex;
-      justify-content:center;
-      align-items:center;
-
-      text-align:center;
-
-      padding:120px 20px;
-
-      background:
-      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
-      url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1600&auto=format&fit=crop');
-
-      background-size:cover;
-      background-position:center;
-
-    }
-
-    .hero-content{
-      max-width:900px;
-    }
-
-    .hero h1{
-      font-size:72px;
-      line-height:1.1;
-      margin-bottom:25px;
-    }
-
-    .highlight{
-      color:#d4af37;
-    }
-
-    .hero p{
-      font-size:22px;
-      color:#d0d0d0;
-      line-height:1.8;
-      margin-bottom:40px;
-    }
-
-    .buttons{
-      display:flex;
-      justify-content:center;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-
-      padding:15px 35px;
-
-      border-radius:50px;
-
-      text-decoration:none;
-
-      font-weight:600;
-
-      transition:0.3s;
-
-    }
-
-    .primary{
-      background:#d4af37;
-      color:black;
-    }
-
-    .secondary{
-      border:1px solid #d4af37;
-      color:#d4af37;
-    }
-
-    .btn:hover{
-      transform:translateY(-5px);
-    }
-
-    section{
-      padding:100px 8%;
-    }
-
-    .section-title{
-      text-align:center;
-      margin-bottom:60px;
-    }
-
-    .section-title h2{
-      font-size:48px;
-      color:#d4af37;
-      margin-bottom:10px;
-    }
-
-    .section-title p{
-      color:#aaa;
-    }
-
-    .features{
-
-      display:grid;
-
-      grid-template-columns:
-      repeat(auto-fit,minmax(280px,1fr));
-
-      gap:30px;
-
-    }
-
-    .feature-card{
-
-      background:rgba(255,255,255,0.05);
-
-      border:1px solid rgba(255,255,255,0.08);
-
-      border-radius:25px;
-
-      padding:35px;
-
-      backdrop-filter:blur(15px);
-
-      transition:0.4s;
-
-    }
-
-    .feature-card:hover{
-
-      transform:translateY(-10px);
-
-      box-shadow:0 0 30px rgba(212,175,55,0.2);
-
-    }
-
-    .feature-card h3{
-      color:#d4af37;
-      margin-bottom:15px;
-      font-size:28px;
-    }
-
-    .feature-card p{
-      color:#d0d0d0;
-      line-height:1.8;
-    }
-
-    .ai-box{
-
-      background:#101010;
-
-      border-radius:30px;
-
-      padding:60px 30px;
-
-      text-align:center;
-
-    }
-
-    .ai-box h3{
-      font-size:42px;
-      color:#d4af37;
-      margin-bottom:20px;
-    }
-
-    .ai-text{
-      color:#bbb;
-      margin-bottom:30px;
-    }
-
-    select{
-
-      width:280px;
-
-      padding:15px;
-
-      border:none;
-
-      border-radius:12px;
-
-      margin-bottom:20px;
-
-      font-size:16px;
-
-    }
-
-    button{
-
-      padding:15px 35px;
-
-      border:none;
-
-      border-radius:12px;
-
-      background:#d4af37;
-
-      font-weight:600;
-
-      cursor:pointer;
-
-      transition:0.3s;
-
-    }
-
-    button:hover{
-      background:white;
-    }
-
-    #result-card{
-      margin-top:40px;
-      display:flex;
-      justify-content:center;
-    }
-
-    .perfume-card{
-
-      width:350px;
-
-      background:rgba(255,255,255,0.05);
-
-      border:1px solid rgba(255,255,255,0.08);
-
-      border-radius:25px;
-
-      overflow:hidden;
-
-      backdrop-filter:blur(12px);
-
-      animation:fadeIn 0.5s ease;
-
-      box-shadow:0 0 25px rgba(212,175,55,0.15);
-
-    }
-
-    .perfume-card img{
-      width:100%;
-      height:260px;
-      object-fit:cover;
-    }
-
-    .perfume-card h2{
-      padding:20px 20px 10px;
-      color:#d4af37;
-    }
-
-    .perfume-card p{
-      padding:0 20px;
-      color:#ddd;
-      line-height:1.7;
-    }
-
-    .details{
-
-      display:flex;
-
-      justify-content:space-around;
-
-      flex-wrap:wrap;
-
-      gap:10px;
-
-      padding:20px;
-
-    }
-
-    .details span{
-
-      background:#1a1a1a;
-
-      padding:8px 14px;
-
-      border-radius:30px;
-
-      font-size:14px;
-
-    }
-
-    footer{
-
-      background:black;
-
-      text-align:center;
-
-      padding:40px 20px;
-
-      color:#777;
-
-    }
-
-    @keyframes fadeIn{
-
-      from{
-        opacity:0;
-        transform:translateY(20px);
-      }
-
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-
-    }
-
-    @media(max-width:768px){
-
-      .hero h1{
-        font-size:48px;
-      }
-
-      nav{
-        flex-direction:column;
-        gap:15px;
-      }
-
-      nav ul{
-        justify-content:center;
-      }
-
-    }
-
-  </style>
-
-</head>
-
-<body>
-
-  <nav>
-
-    <div class="logo">ESSENCE AI</div>
-
-    <ul>
-
-      <li><a href="#home">Home</a></li>
-
-      <li><a href="#features">Features</a></li>
-
-      <li><a href="#quiz">Quiz</a></li>
-
-      <li><a href="#wardrobe">Wardrobe</a></li>
-
-      <li><a href="#scanner">Scanner</a></li>
-
-      <li><a href="#journal">Journal</a></li>
-
-      <li><a href="#ai">AI Engine</a></li>
-
-    </ul>
-
-  </nav>
-
-  <section class="hero" id="home">
-
-    <div class="hero-content">
-
-      <h1>
-        Discover Your
-        <span class="highlight">Signature Fragrance</span>
-        With AI
-      </h1>
-
-      <p>
-        AI-powered fragrance platform that recommends
-        perfumes based on your mood, personality,
-        wardrobe, lifestyle, and daily vibe.
-      </p>
-
-      <div class="buttons">
-
-        <a href="#ai" class="btn primary">
-          Try AI Engine
-        </a>
-
-        <a href="#features" class="btn secondary">
-          Explore Features
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="features">
-
-    <div class="section-title">
-
-      <h2>Platform Features</h2>
-
-      <p>
-        Experience the future of fragrance discovery
-      </p>
-
-    </div>
-
-    <div class="features">
-
-      <div class="feature-card">
-
-        <h3>AI Recommendation</h3>
-
-        <p>
-          Personalized fragrance suggestions powered
-          by intelligent mood analysis.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Luxury Experience</h3>
-
-        <p>
-          Premium dark luxury interface inspired by
-          modern AI startup applications.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Mood Matching</h3>
-
-        <p>
-          Find fragrances for office, parties,
-          travel, dates, and confidence boosts.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Smart Discovery</h3>
-
-        <p>
-          Explore trending perfumes and discover
-          your signature scent instantly.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="quiz">
-
-    <div class="section-title">
-
-      <h2>Fragrance Quiz</h2>
-
-      <p>
-        AI analyzes your personality and preferences
-      </p>
-
-    </div>
-
-    <div class="features">
-
-      <div class="feature-card">
-
-        <h3>Personality Match</h3>
-
-        <p>
-          Discover fragrances based on lifestyle,
-          confidence, aura, and mood.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Occasion Analysis</h3>
-
-        <p>
-          AI selects perfumes for work,
-          travel, gym, nightlife, and dates.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Smart Questions</h3>
-
-        <p>
-          Interactive fragrance quiz powered
-          by intelligent recommendation logic.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="wardrobe">
-
-    <div class="section-title">
-
-      <h2>Fragrance Wardrobe</h2>
-
-      <p>
-        Organize your perfume collection digitally
-      </p>
-
-    </div>
-
-    <div class="features">
-
-      <div class="feature-card">
-
-        <h3>Collection Tracker</h3>
-
-        <p>
-          Save and organize your fragrances
-          inside your digital wardrobe.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Usage Insights</h3>
-
-        <p>
-          Track your most-used perfumes
-          and seasonal preferences.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Wishlist System</h3>
-
-        <p>
-          Save fragrances you want to try
-          later and build dream collections.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="scanner">
-
-    <div class="section-title">
-
-      <h2>AI Perfume Scanner</h2>
-
-      <p>
-        Scan and identify fragrances instantly
-      </p>
-
-    </div>
-
-    <div class="features">
-
-      <div class="feature-card">
-
-        <h3>Barcode Scanner</h3>
-
-        <p>
-          Scan perfume bottles and instantly
-          access fragrance details.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Note Detection</h3>
-
-        <p>
-          AI analyzes fragrance notes including
-          woody, citrus, floral, and oriental.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Authenticity Check</h3>
-
-        <p>
-          Verify perfume authenticity using
-          smart recognition technology.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="journal">
-
-    <div class="section-title">
-
-      <h2>Fragrance Journal</h2>
-
-      <p>
-        Track your scent memories and experiences
-      </p>
-
-    </div>
-
-    <div class="features">
-
-      <div class="feature-card">
-
-        <h3>Scent Memories</h3>
-
-        <p>
-          Save emotional memories connected
-          with your favorite fragrances.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Daily Notes</h3>
-
-        <p>
-          Record perfume usage, compliments,
-          projection, and longevity.
-        </p>
-
-      </div>
-
-      <div class="feature-card">
-
-        <h3>Mood History</h3>
-
-        <p>
-          AI tracks your fragrance preferences
-          across different moods and occasions.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section id="ai">
-
-    <div class="ai-box">
-
-      <h3>AI Fragrance Engine</h3>
-
-      <p class="ai-text">
-        Select your mood and receive a premium fragrance recommendation.
-      </p>
-
-      <select id="mood">
-
-        <option value="">
-          Select Your Mood
-        </option>
-
-        <option value="fresh">
-          Fresh & Clean
-        </option>
-
-        <option value="luxury">
-          Luxury & Elegant
-        </option>
-
-        <option value="romantic">
-          Romantic & Soft
-        </option>
-
-        <option value="party">
-          Party & Bold
-        </option>
-
-      </select>
-
-      <br>
-
-      <button onclick="recommendPerfume()">
-        Generate Recommendation
-      </button>
-
-      <div id="result-card"></div>
-
-    </div>
-
-  </section>
-
-  <footer>
-
-    <p>
-      © 2026 ESSENCE AI | AI Powered Fragrance Discovery Platform
-    </p>
-
-  </footer>
-
-  <script>
-
-    function recommendPerfume(){
-
-      const mood =
-      document.getElementById("mood").value;
-
-      const result =
-      document.getElementById("result-card");
-
-      if(mood === "fresh"){
-
-        result.innerHTML = `
-
-        <div class="perfume-card">
-
-          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=900&auto=format&fit=crop">
-
-          <h2>Davidoff Cool Water</h2>
-
-          <p>
-          Fresh aquatic fragrance perfect for
-          office wear and summer freshness.
-          </p>
-
-          <div class="details">
-
-            <span>🌊 Aquatic</span>
-
-            <span>⏳ 6-8 Hours</span>
-
-            <span>☀️ Summer</span>
-
-          </div>
-
-        </div>
-
-        `;
-      }
-
-      else if(mood === "luxury"){
-
-        result.innerHTML = `
-
-        <div class="perfume-card">
-
-          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=900&auto=format&fit=crop">
-
-          <h2>Tom Ford Oud Wood</h2>
-
-          <p>
-          Elegant woody fragrance designed
-          for premium luxury presence.
-          </p>
-
-          <div class="details">
-
-            <span>🪵 Woody</span>
-
-            <span>⏳ 10+ Hours</span>
-
-            <span>✨ Luxury</span>
-
-          </div>
-
-        </div>
-
-        `;
-      }
-
-      else if(mood === "romantic"){
-
-        result.innerHTML = `
-
-        <div class="perfume-card">
-
-          <img src="https://images.unsplash.com/photo-1615634262417-5d8d3a6d2ca9?q=80&w=900&auto=format&fit=crop">
-
-          <h2>Chanel Coco Mademoiselle</h2>
-
-          <p>
-          Soft floral notes perfect for
-          romantic evenings and dates.
-          </p>
-
-          <div class="details">
-
-            <span>🌸 Floral</span>
-
-            <span>⏳ 8 Hours</span>
-
-            <span>❤️ Date Night</span>
-
-          </div>
-
-        </div>
-
-        `;
-      }
-
-      else if(mood === "party"){
-
-        result.innerHTML = `
-
-        <div class="perfume-card">
-
-          <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?q=80&w=900&auto=format&fit=crop">
-
-          <h2>Dior Sauvage</h2>
-
-          <p>
-          Bold fragrance crafted for nightlife,
-          events, and energetic parties.
-          </p>
-
-          <div class="details">
-
-            <span>🔥 Spicy</span>
-
-            <span>⏳ 12 Hours</span>
-
-            <span>🎉 Party</span>
-
-          </div>
-
-        </div>
-
-        `;
-      }
-
-      else{
-
-        result.innerHTML = `
-
-        <div class="perfume-card">
-
-          <h2 style="padding:30px;">
-            Please Select Your Mood
-          </h2>
-
-        </div>
-
-        `;
-      }
-
-    }
-
-  </script>
-
-</body>
-</html>
+<!-- saved from url=(0041)https://essenceaiappshop.lovable.app/home -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="stylesheet" href="./Noir Essence — Your Fragrance Aura_files/styles-C3sRSvdj.css" data-precedence="default"><link rel="stylesheet" href="./Noir Essence — Your Fragrance Aura_files/css2" data-precedence="default"><title>Noir Essence — Your Fragrance Aura</title><meta name="description" content="Discover your perfect scent through mood, personality, and occasion matching."><meta property="og:title" content="Noir Essence — Your Fragrance Aura"><meta name="twitter:title" content="Noir Essence — Your Fragrance Aura"><meta property="og:description" content="Discover your perfect scent through mood, personality, and occasion matching."><meta name="twitter:description" content="Discover your perfect scent through mood, personality, and occasion matching."><meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b27f6cf1-0b03-42a0-9f7c-c34287878ca1/id-preview-5940911c--cc02d84c-adb9-4a89-a671-8c4c61f5ab5d.lovable.app-1778160501583.png"><meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b27f6cf1-0b03-42a0-9f7c-c34287878ca1/id-preview-5940911c--cc02d84c-adb9-4a89-a671-8c4c61f5ab5d.lovable.app-1778160501583.png"><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><link rel="modulepreload" href="https://essenceaiappshop.lovable.app/assets/index-CyluYuBP.js"><link rel="preconnect" href="https://fonts.googleapis.com/"><link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="anonymous">
+<style>
+	@font-face {
+		font-family: 'CameraPlainVariable';
+		src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
+		font-weight: 100 900;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	#lovable-badge {
+		--badge-bg: #1b1b1b;
+		--badge-text: #c5c1b9;
+		--badge-text-hover: #dcdad5;
+		--badge-radius: 6px;
+		--badge-padding: 8px;
+		--badge-gap: 6px;
+		--badge-shadow: 
+			0 0 0 1px rgba(0, 0, 0, 0.88),
+			0 1px 0 0 rgba(0, 0, 0, 0.04),
+			0 2px 2px -1px rgba(0, 0, 0, 0.08),
+			0 4px 4px -2px rgba(0, 0, 0, 0.08),
+			0 8px 8px -4px rgba(0, 0, 0, 0.08),
+			0 16px 16px -8px rgba(0, 0, 0, 0.08);
+		--badge-transition-duration: 0.2s;
+		--badge-transition-easing: cubic-bezier(0.16, 1, 0.32, 1);
+		--focus-color: #575ECF;
+		--focus-offset: 2px;
+		--focus-width: 2px;
+		
+		position: fixed;
+		bottom: 12px;
+		right: 12px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		z-index: 1000000;
+		background-color: var(--badge-bg);
+		color: var(--badge-text);
+		border-radius: var(--badge-radius);
+		box-shadow: var(--badge-shadow);
+		font-size: 12px;
+		font-family: CameraPlainVariable, "CameraPlainVariable Fallback", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		font-weight: 400 !important;
+		text-transform: none !important;
+		font-feature-settings: normal !important;
+		transform: translateZ(0);
+		will-change: transform, opacity;
+	}
+
+	#lovable-badge-cta {
+		display: flex;
+		align-items: center;
+		gap: var(--badge-gap);
+		padding: 0 var(--badge-padding);
+		height: 100%;
+		color: inherit;
+		text-decoration: none;
+		white-space: nowrap;
+		border-radius: var(--badge-radius) 0 0 var(--badge-radius);
+		transition: 
+			background-color var(--badge-transition-duration) ease,
+			color var(--badge-transition-duration) ease,
+			transform 0.1s ease;
+	}
+
+	#lovable-badge-cta:hover {
+		background: rgba(255, 255, 255, 0.04);
+		color: var(--badge-text-hover);
+	}
+
+	#lovable-badge-cta:active {
+		transform: scale(0.98);
+	}
+
+	#lovable-badge-cta:focus {
+		outline: none;
+	}
+
+	#lovable-badge-cta:focus-visible {
+		outline: var(--focus-width) solid var(--focus-color);
+		outline-offset: var(--focus-offset);
+		z-index: 1;
+	}
+
+	#lovable-badge-text {
+		line-height: 1;
+	}
+
+	#lovable-badge-divider {
+		width: 1px;
+		height: 24px;
+		background-color: rgba(255, 255, 255, 0.04);
+		flex-shrink: 0;
+	}
+
+	#lovable-badge-close {
+		width: 24px;
+		height: 24px;
+		min-width: 24px;
+		min-height: 24px;
+		cursor: pointer;
+		background: none;
+		border: none;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0 var(--badge-radius) var(--badge-radius) 0;
+		flex-shrink: 0;
+		transition: 
+			background-color var(--badge-transition-duration) ease,
+			transform 0.1s ease;
+	}
+
+	#lovable-badge-close:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	#lovable-badge-close:active {
+		transform: scale(0.92);
+	}
+
+	#lovable-badge-close:focus {
+		outline: none;
+	}
+
+	#lovable-badge-close:focus-visible {
+		outline: var(--focus-width) solid var(--focus-color);
+		outline-offset: calc(var(--focus-offset) * -1);
+		z-index: 1;
+	}
+
+	#lovable-badge-close svg path {
+		fill: var(--badge-text);
+		transition: fill var(--badge-transition-duration) ease;
+	}
+
+	#lovable-badge-close:hover svg path {
+		fill: var(--badge-text-hover);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#lovable-badge-cta,
+		#lovable-badge-close,
+		#lovable-badge-close svg path {
+			transition: none;
+		}
+		
+		#lovable-badge-cta:active,
+		#lovable-badge-close:active {
+			transform: none;
+		}
+	}
+
+	@media (prefers-contrast: high) {
+		#lovable-badge {
+			--badge-bg: #000;
+			--badge-text: #fff;
+			--badge-text-hover: #fff;
+			border: 2px solid currentColor;
+		}
+		
+		#lovable-badge-cta:focus-visible,
+		#lovable-badge-close:focus-visible {
+			outline-width: 3px;
+		}
+	}
+</style>
+<script defer="" src="./Noir Essence — Your Fragrance Aura_files/_flock.js.download" data-proxy-url="/~api/analytics"></script><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/_app-BoNkEmLr.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/shopping-bag-BCHH0L14.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/RegionSettings-CfxpIYeT.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/index-DMpMmuVB.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/_app.home-Dc5k8EN0.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/arrow-right-Colc3mao.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/star-DJhJ76AR.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/droplets-D23zTdVM.js"><link rel="modulepreload" as="script" crossorigin="" href="https://essenceaiappshop.lovable.app/assets/heart-DMQTGbCC.js"></head><body><!--$--><!--/$-->
+<aside id="lovable-badge" role="complementary" dir="ltr" lang="en" aria-label="Edit with Lovable">
+	<a id="lovable-badge-cta" target="_blank" href="https://lovable.dev/projects/cc02d84c-adb9-4a89-a671-8c4c61f5ab5d?utm_source=lovable-badge" rel="noopener nofollow" aria-label="Edit with Lovable">
+		<span id="lovable-badge-text">Edit with</span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="52" height="16" fill="none" viewBox="0 0 52 16">
+  <path fill="#FCFBF8" fill-rule="evenodd" d="M20.318 5.25c.643 0 1.206.14 1.69.418a2.81 2.81 0 0 1 1.118 1.191c.266.513.4 1.115.4 1.807s-.134 1.296-.4 1.812a2.81 2.81 0 0 1-1.118 1.193c-.484.278-1.047.418-1.69.418s-1.208-.14-1.695-.418a2.85 2.85 0 0 1-1.125-1.193c-.262-.516-.393-1.12-.393-1.812s.131-1.294.393-1.807a2.848 2.848 0 0 1 1.125-1.191c.487-.279 1.052-.418 1.695-.418Zm0 1.425c-.27 0-.504.076-.7.228-.193.147-.34.37-.443.67-.102.295-.153.66-.153 1.093 0 .435.05.801.153 1.1.102.3.25.524.443.676.196.147.43.22.7.22.27 0 .502-.073.694-.22.193-.152.341-.375.443-.67.103-.299.153-.667.153-1.106 0-.65-.112-1.145-.337-1.481a1.08 1.08 0 0 0-.953-.51ZM32.7 5.25c.61 0 1.127.1 1.549.3.422.197.74.48.953.849.217.368.325.809.325 1.32v2.704c0 .29.02.562.062.812.044.245.108.4.19.466V12h-1.935a5.895 5.895 0 0 1-.105-.684 7.745 7.745 0 0 1-.02-.228 2.293 2.293 0 0 1-.151.203c-.205.242-.47.437-.793.584-.32.143-.685.215-1.094.215-.406 0-.77-.08-1.094-.24a1.845 1.845 0 0 1-.756-.682 1.984 1.984 0 0 1-.27-1.045c0-.606.178-1.069.535-1.388.356-.324.87-.534 1.542-.633l1.125-.16c.225-.032.403-.074.534-.123a.622.622 0 0 0 .288-.196.549.549 0 0 0 .093-.327.65.65 0 0 0-.11-.367.702.702 0 0 0-.32-.27c-.14-.07-.31-.105-.51-.105-.32 0-.576.083-.768.251-.193.164-.298.39-.314.676h-1.923c.016-.434.147-.82.393-1.155.25-.34.596-.604 1.039-.792.442-.189.954-.283 1.535-.283Zm.99 3.498a.98.98 0 0 1-.215.14 2.49 2.49 0 0 1-.584.178l-.473.092c-.315.061-.553.156-.713.283-.155.127-.233.305-.233.534 0 .23.084.412.252.547.168.135.383.203.645.203s.494-.058.694-.173c.201-.118.355-.282.461-.49.11-.21.166-.448.166-.714v-.6Zm4.526-2.375c.065-.125.138-.243.221-.349.197-.25.437-.44.719-.571.282-.135.6-.203.952-.203.528 0 .988.138 1.377.412.389.275.688.67.896 1.186.21.512.314 1.12.314 1.824 0 .7-.107 1.309-.32 1.825-.213.512-.518.906-.915 1.18-.393.275-.854.412-1.383.412-.352 0-.667-.062-.946-.184a1.832 1.832 0 0 1-.7-.554 2.2 2.2 0 0 1-.234-.383V12h-1.843V3h1.862v3.373Zm1.284.296c-.274 0-.51.085-.707.253-.192.163-.338.397-.436.7a3.376 3.376 0 0 0-.148 1.05c0 .406.05.759.148 1.058.098.299.243.53.436.694.197.164.433.246.707.246.279 0 .512-.082.7-.246.193-.164.336-.395.43-.694.099-.3.148-.652.148-1.058 0-.405-.05-.757-.147-1.056-.095-.299-.238-.53-.43-.694a1.015 1.015 0 0 0-.7-.253Zm9.416-1.419c.602 0 1.136.131 1.604.393.466.262.829.643 1.086 1.143.263.5.394 1.097.394 1.794 0 .25-.002.449-.006.596H47.51c.018.288.071.538.164.75a1.3 1.3 0 0 0 .491.596c.214.13.465.196.757.196.319 0 .583-.082.792-.246.209-.167.34-.403.393-.706h1.862a2.48 2.48 0 0 1-.485 1.235 2.54 2.54 0 0 1-1.051.805c-.439.188-.949.283-1.53.283-.655 0-1.225-.125-1.708-.375a2.672 2.672 0 0 1-1.13-1.143c-.267-.508-.4-1.137-.4-1.887 0-.712.14-1.327.418-1.843a2.86 2.86 0 0 1 1.155-1.186c.491-.27 1.051-.405 1.678-.405Zm-.044 1.345c-.274 0-.516.068-.725.203a1.29 1.29 0 0 0-.479.59 2.045 2.045 0 0 0-.132.498h2.562a1.873 1.873 0 0 0-.138-.602 1.061 1.061 0 0 0-.418-.516 1.243 1.243 0 0 0-.67-.173Z" clip-rule="evenodd"></path>
+  <path fill="#FCFBF8" d="m26.605 9.995 1.342-4.566h1.924L27.628 12h-2.07l-2.33-6.57h1.98l1.397 4.565Zm-13.013.143h2.256c1.632 0 1.421 1.837 1.418 1.861h-5.603V3h1.93v7.138Zm31.516 1.861h-1.862V3h1.862v8.999Z"></path>
+  <path fill="url(#a)" fill-rule="evenodd" d="M2.7 3c1.492 0 2.7 1.192 2.7 2.663v1.012h.9c1.49 0 2.7 1.192 2.7 2.662S7.791 12 6.3 12H0V5.663C0 4.193 1.209 3 2.7 3Z" clip-rule="evenodd"></path>
+  <defs>
+    <radialgradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(-1.54236 7.07838 -10.231 -2.15602 4.627 5.022)" gradientUnits="userSpaceOnUse">
+      <stop offset=".106" stop-color="#FE7B02"></stop>
+      <stop offset=".394" stop-color="#FE3F21"></stop>
+      <stop offset=".608" stop-color="#F858BC"></stop>
+      <stop offset=".929" stop-color="#575ECF"></stop>
+    </radialgradient>
+  </defs>
+</svg>
+
+
+	</a>
+	
+	<span id="lovable-badge-divider" aria-hidden="true"></span>
+	
+	<button id="lovable-badge-close" aria-label="Dismiss" title="Dismiss" type="button">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true">
+			<path d="M10.646 4.646a.5.5 0 1 1 .707.708L8.707 8l2.646 2.646a.5.5 0 1 1-.707.707L8 8.707l-2.646 2.646a.5.5 0 1 1-.708-.707L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708L8 7.293l2.646-2.647Z"></path>
+		</svg>
+	</button>
+</aside>
+<script>
+	// Don't show the lovable-badge if the page is in an iframe or if it's being rendered by puppeteer (screenshot service)
+	if (window.self !== window.top || navigator.userAgent.includes('puppeteer')) {
+		// the page is in an iframe
+		var badge = document.getElementById('lovable-badge');
+		if (badge) {
+			badge.style.display = 'none';
+		}
+	}
+
+	// Add click event listener to close button with animation
+	var closeButton = document.getElementById('lovable-badge-close');
+	if (closeButton) {
+		closeButton.addEventListener('click', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			var badge = document.getElementById('lovable-badge');
+			if (badge) {
+				badge.classList.add('closing');
+				setTimeout(function() {
+					if (badge) {
+						badge.style.display = 'none';
+					}
+				}, 240);
+			}
+		});
+	}
+</script>
+<div class="min-h-screen bg-background pb-20"><button class="fixed top-4 right-4 z-40 w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center hover:bg-accent transition-colors shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe w-4.5 h-4.5 text-muted-foreground" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></button><div class="max-w-lg mx-auto px-4 pt-6"><div class="flex items-center justify-between mb-6" style="opacity: 1; transform: none;"><div><h1 class="text-2xl font-bold tracking-tight">Noir Essence</h1><p class="text-sm text-muted-foreground">Find your signature scent</p></div><div class="flex items-center gap-2"><button class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-question-mark w-4 h-4 text-muted-foreground" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></button><button class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center hover:bg-accent transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe w-4 h-4 text-muted-foreground" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></button><div class="w-9 h-9 rounded-full gradient-aura shimmer"></div></div></div><div style="opacity: 1; transform: none;"><a href="https://essenceaiappshop.lovable.app/aura"><div class="relative overflow-hidden rounded-2xl gradient-aura p-5 mb-6"><div class="absolute top-2 right-3 opacity-30"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-16 h-16" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg></div><h2 class="text-lg font-bold text-foreground mb-1">Discover Your Fragrance Aura</h2><p class="text-sm text-foreground/70 mb-3">Answer a few fun questions and find your scent personality</p><span class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-4 h-4" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg> Start Quiz</span></div></a></div><section class="mb-8"><h2 class="text-lg font-bold mb-3">What's Your Vibe?</h2><div class="grid grid-cols-3 gap-2.5"><div class="rounded-xl bg-gradient-to-br from-emerald-900/40 to-green-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">🌿</span><p class="text-xs font-semibold mt-1 text-emerald-400">Calm &amp; Earthy</p></div><div class="rounded-xl bg-gradient-to-br from-orange-900/40 to-red-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">🔥</span><p class="text-xs font-semibold mt-1 text-orange-400">Bold &amp; Spicy</p></div><div class="rounded-xl bg-gradient-to-br from-pink-900/40 to-rose-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">🌸</span><p class="text-xs font-semibold mt-1 text-pink-400">Soft &amp; Floral</p></div><div class="rounded-xl bg-gradient-to-br from-violet-900/40 to-purple-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">🌙</span><p class="text-xs font-semibold mt-1 text-violet-400">Dark &amp; Mysterious</p></div><div class="rounded-xl bg-gradient-to-br from-yellow-900/40 to-amber-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">☀️</span><p class="text-xs font-semibold mt-1 text-yellow-400">Fresh &amp; Citrus</p></div><div class="rounded-xl bg-gradient-to-br from-amber-900/40 to-orange-900/20 p-3 text-center cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><span class="text-2xl">🍦</span><p class="text-xs font-semibold mt-1 text-amber-400">Sweet &amp; Gourmand</p></div></div></section><section class="mb-8" style="opacity: 1;"><div class="rounded-2xl bg-card border border-border p-4 flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-warm flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-sun w-6 h-6 text-amber-glow" aria-hidden="true"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path></svg></div><div class="flex-1"><p class="text-xs text-muted-foreground">Based on today's weather</p><p class="text-sm font-semibold">Try something fresh &amp; aquatic 🌊</p></div></div></section><section class="mb-8"><h2 class="text-lg font-bold mb-3">Perfume for Occasion</h2><div class="grid grid-cols-3 gap-2.5"><div class="bg-warm rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-coffee w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M10 2v2"></path><path d="M14 2v2"></path><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"></path><path d="M6 2v2"></path></svg><span class="text-xs font-semibold">College</span></div><div class="bg-rose-mist rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg><span class="text-xs font-semibold">Date Night</span></div><div class="bg-secondary rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg><span class="text-xs font-semibold">Office</span></div><div class="bg-accent rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg><span class="text-xs font-semibold">Wedding</span></div><div class="bg-warm rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-sun w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M12 2v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="M20 12h2"></path><path d="m19.07 4.93-1.41 1.41"></path><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"></path><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"></path></svg><span class="text-xs font-semibold">Summer</span></div><div class="bg-secondary rounded-xl p-3 flex flex-col items-center gap-1.5 cursor-pointer hover:scale-105 transition-transform" style="opacity: 1; transform: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-droplets w-5 h-5 text-muted-foreground" aria-hidden="true"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path></svg><span class="text-xs font-semibold">Rainy Day</span></div></div></section><section class="mb-8"><div class="flex items-center justify-between mb-3"><h2 class="text-lg font-bold">Trending Now</h2><span class="text-xs text-primary font-medium">See all</span></div><div class="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"><div class="min-w-[160px] rounded-2xl bg-card border border-border p-3.5 flex-shrink-0" style="opacity: 1; transform: none;"><div class="w-full h-20 rounded-lg gradient-warm mb-2.5 shimmer"></div><p class="text-xs text-muted-foreground">MFK</p><p class="text-sm font-semibold leading-tight">Baccarat Rouge 540</p><p class="text-[10px] text-primary mt-0.5">Rich girl energy</p><div class="flex items-center justify-between mt-2"><span class="text-xs font-bold">₹24,500</span><span class="flex items-center gap-0.5 text-[10px] text-amber-glow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-3 h-3 fill-current" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4.9</span></div></div><div class="min-w-[160px] rounded-2xl bg-card border border-border p-3.5 flex-shrink-0" style="opacity: 1; transform: none;"><div class="w-full h-20 rounded-lg gradient-warm mb-2.5 shimmer"></div><p class="text-xs text-muted-foreground">Chanel</p><p class="text-sm font-semibold leading-tight">Bleu de Chanel</p><p class="text-[10px] text-primary mt-0.5">CEO energy</p><div class="flex items-center justify-between mt-2"><span class="text-xs font-bold">₹12,800</span><span class="flex items-center gap-0.5 text-[10px] text-amber-glow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-3 h-3 fill-current" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4.8</span></div></div><div class="min-w-[160px] rounded-2xl bg-card border border-border p-3.5 flex-shrink-0" style="opacity: 1; transform: none;"><div class="w-full h-20 rounded-lg gradient-warm mb-2.5 shimmer"></div><p class="text-xs text-muted-foreground">Juliette Has a Gun</p><p class="text-sm font-semibold leading-tight">Vanilla Vibes</p><p class="text-[10px] text-primary mt-0.5">Soft vanilla</p><div class="flex items-center justify-between mt-2"><span class="text-xs font-bold">₹8,900</span><span class="flex items-center gap-0.5 text-[10px] text-amber-glow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-3 h-3 fill-current" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4.7</span></div></div><div class="min-w-[160px] rounded-2xl bg-card border border-border p-3.5 flex-shrink-0" style="opacity: 1; transform: none;"><div class="w-full h-20 rounded-lg gradient-warm mb-2.5 shimmer"></div><p class="text-xs text-muted-foreground">Tom Ford</p><p class="text-sm font-semibold leading-tight">Oud Wood</p><p class="text-[10px] text-primary mt-0.5">Dark luxury</p><div class="flex items-center justify-between mt-2"><span class="text-xs font-bold">₹22,000</span><span class="flex items-center gap-0.5 text-[10px] text-amber-glow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-3 h-3 fill-current" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4.9</span></div></div></div></section><section class="mb-8"><h2 class="text-lg font-bold mb-3">Budget-Friendly</h2><div class="grid grid-cols-2 gap-2.5"><div class="rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:scale-[1.02] transition-transform" style="opacity: 1; transform: none;"><span class="text-xl">💰</span><p class="text-sm font-semibold mt-1">Under ₹500</p><p class="text-xs text-muted-foreground">24 perfumes</p></div><div class="rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:scale-[1.02] transition-transform" style="opacity: 1; transform: none;"><span class="text-xl">✨</span><p class="text-sm font-semibold mt-1">Under ₹1000</p><p class="text-xs text-muted-foreground">38 perfumes</p></div><div class="rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:scale-[1.02] transition-transform" style="opacity: 1; transform: none;"><span class="text-xl">👑</span><p class="text-sm font-semibold mt-1">Luxury Dupes</p><p class="text-xs text-muted-foreground">15 perfumes</p></div><div class="rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:scale-[1.02] transition-transform" style="opacity: 1; transform: none;"><span class="text-xl">🎓</span><p class="text-sm font-semibold mt-1">Student Picks</p><p class="text-xs text-muted-foreground">20 perfumes</p></div></div></section><section class="mb-8"><h2 class="text-lg font-bold mb-3">Compliment Factor</h2><div class="space-y-2.5"><div class="flex items-center gap-3 rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:bg-accent/50 transition-colors" style="opacity: 1; transform: none;"><div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart w-5 h-5 text-primary" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path></svg></div><div class="flex-1"><p class="text-sm font-semibold">Most Complimented</p><p class="text-xs text-muted-foreground">12 scents</p></div></div><div class="flex items-center gap-3 rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:bg-accent/50 transition-colors" style="opacity: 1; transform: none;"><div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-flame w-5 h-5 text-primary" aria-hidden="true"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path></svg></div><div class="flex-1"><p class="text-sm font-semibold">Office-Safe</p><p class="text-xs text-muted-foreground">8 scents</p></div></div><div class="flex items-center gap-3 rounded-xl bg-card border border-border p-3.5 cursor-pointer hover:bg-accent/50 transition-colors" style="opacity: 1; transform: none;"><div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-5 h-5 text-primary" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg></div><div class="flex-1"><p class="text-sm font-semibold">Date Night Magnets</p><p class="text-xs text-muted-foreground">10 scents</p></div></div></div></section><section class="mb-8"><h2 class="text-lg font-bold mb-3">Silent Luxury</h2><div class="flex gap-2.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide"><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">Quiet Luxury</span><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">Rich Girl</span><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">CEO Energy</span><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">Old Money</span><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">Clean Girl</span><span class="whitespace-nowrap rounded-full bg-card border border-border px-4 py-2 text-xs font-semibold cursor-pointer hover:bg-accent transition-colors" style="opacity: 1; transform: none;">Dark Feminine</span></div></section><section class="mb-8"><div class="rounded-2xl gradient-gold p-5"><h2 class="text-lg font-bold text-gold-foreground mb-1">Layering Tip ✨</h2><p class="text-sm text-gold-foreground/80 mb-2">Try <strong>Vanilla + Coffee</strong> for a rich, cozy scent that lasts all day.</p><span class="text-xs font-semibold text-gold-foreground/60">Combo type: Sweet &amp; Bold</span></div></section></div><nav class="fixed bottom-0 left-0 right-0 z-50 bg-nav-bg border-t border-border px-2 pb-[env(safe-area-inset-bottom)]"><div class="flex items-center justify-around max-w-lg mx-auto h-16"><a class="relative flex flex-col items-center gap-0.5 px-2 py-1 active" href="https://essenceaiappshop.lovable.app/home" data-status="active" aria-current="page"><div class="relative"><div class="absolute -inset-2 rounded-xl bg-accent" style="opacity: 1;"></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house relative z-10 w-5 h-5 transition-colors text-nav-active" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></div><span class="text-[10px] font-medium transition-colors text-nav-active">Home</span></a><a href="https://essenceaiappshop.lovable.app/aura" class="relative flex flex-col items-center gap-0.5 px-2 py-1"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles relative z-10 w-5 h-5 transition-colors text-muted-foreground" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg></div><span class="text-[10px] font-medium transition-colors text-muted-foreground">Aura</span></a><a href="https://essenceaiappshop.lovable.app/wardrobe" class="relative flex flex-col items-center gap-0.5 px-2 py-1"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag relative z-10 w-5 h-5 transition-colors text-muted-foreground" aria-hidden="true"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg></div><span class="text-[10px] font-medium transition-colors text-muted-foreground">Wardrobe</span></a><a href="https://essenceaiappshop.lovable.app/scanner" class="relative flex flex-col items-center gap-0.5 px-2 py-1"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-scan-line relative z-10 w-5 h-5 transition-colors text-muted-foreground" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M7 12h10"></path></svg></div><span class="text-[10px] font-medium transition-colors text-muted-foreground">Scanner</span></a><a href="https://essenceaiappshop.lovable.app/journal" class="relative flex flex-col items-center gap-0.5 px-2 py-1"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-heart relative z-10 w-5 h-5 transition-colors text-muted-foreground" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"></path><path d="M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"></path></svg></div><span class="text-[10px] font-medium transition-colors text-muted-foreground">Journal</span></a><a href="https://essenceaiappshop.lovable.app/concierge" class="relative flex flex-col items-center gap-0.5 px-2 py-1"><div class="relative"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle relative z-10 w-5 h-5 transition-colors text-muted-foreground" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path></svg></div><span class="text-[10px] font-medium transition-colors text-muted-foreground">Concierge</span></a></div></nav></div></body></html>
